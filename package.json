@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/atkingtornado"
   },
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "wpc navbar header component",
   "main": "dist/cjs/index.js",
   "scripts": {

@@ -50,8 +50,18 @@ export const NavBar = ({ }: NavBarProps) => (
     }}
   >
 
-    <Box display="flex" flexDirection="row" justifyContent="center">
-        <Box>
+    <Box 
+      display="flex" 
+      flexDirection="row" 
+      justifyContent="center"
+      alignContent="start"
+    >
+        <Box
+          display="flex" 
+          alignContent="start"
+          // position="absolute"
+          // left="5px"
+        >
          <img src={headerNWS} />
          <img src={headerNOAA} />
         </Box>
@@ -91,7 +101,12 @@ export const NavBar = ({ }: NavBarProps) => (
           National Oceanic and Atmospheric Administration
         </Typography>
       </Box>
-      <img src={headerDOC} />
+      <Box
+        // position="absolute"
+        // right="5px"
+      >
+        <img src={headerDOC} />
+      </Box>
     </Box>
     <Divider />
     <Box display="flex" flexDirection="row" padding={0} justifyContent="center">
@@ -120,10 +135,10 @@ export const NavBar = ({ }: NavBarProps) => (
 
     </Box>
     <Divider />
-    <Box>
+{/*    <Box>
        <Toolbar disableGutters>
        </Toolbar>
-    </Box>
+    </Box>*/}
   </AppBar>
 );
 
