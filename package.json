@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/atkingtornado"
   },
-  "version": "1.0.12",
+  "version": "1.0.18",
   "description": "wpc navbar header component",
   "main": "dist/cjs/index.js",
   "scripts": {
@@ -50,6 +50,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.2"
+    "@mui/material": "^5.11.2",
+    "rollup-plugin-import-css": "^3.1.0"
   }
 }

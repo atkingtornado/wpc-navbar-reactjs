@@ -21,11 +21,11 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { createTheme,  ThemeProvider } from '@mui/material/styles';
 import { alpha, styled } from '@mui/material/styles';
 
-import headerNWS from './assets/header-nws.png'
-import headerNOAA from './assets/header-noaa.png'
-import headerDOC from './assets/header-doc.png'
+import headerNWS from './assets/header-nws.png';
+import headerNOAA from './assets/header-noaa.png';
+import headerDOC from './assets/header-doc.png';
 
-// import './header.css';
+import './styles.css';
 
 
 const theme = createTheme({});
@@ -271,7 +271,20 @@ export const NavBar = (NavBarProps) => {
       <Box display="flex" flexDirection="row" padding={0} justifyContent="center">
         {navLinks.map((a, i) => {
           return (
-            <NavMenuItem key={a[0] + 'item'} menuData={a}/>
+            <div className="dropdown">
+              <div className="dropbtn">{a[0]} ▼</div>
+              <div className="dropdown-content">
+                {
+                  a[1].map((b, j) => {
+
+                      return (
+                         <a href={b[1]}>{b[0]}</a>
+                      )
+                    })
+                }
+               
+              </div>
+            </div>
           )
         })
 
@@ -279,103 +292,8 @@ export const NavBar = (NavBarProps) => {
 
       </Box>
       <Divider />
-  {/*    <Box>
-         <Toolbar disableGutters>
-         </Toolbar>
-      </Box>*/}
     </AppBar>
   );
-}
-
-interface NavMenuItemProps {menuData: any}
-const NavMenuItem = (props: NavMenuItemProps) => {
-
-  const { width } = useViewport();
-  const breakpoint = 750;
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-    setOpen(true);
-  };
-
-  const handleClose = (e) => {
-
-    const menu = document.getElementById("simple-menu").children[2];
-    const menuBoundary = {
-      left: menu.offsetLeft,
-      top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight,
-      right: menu.offsetLeft + menu.offsetHeight,
-      bottom: menu.offsetTop + menu.offsetHeight
-    };
-    if (
-      e.clientX >= menuBoundary.left &&
-      e.clientX <= menuBoundary.right &&
-      e.clientY <= menuBoundary.bottom - 9 &&
-      e.clientY >= menuBoundary.top
-    ) {
-      return;
-    }
-    setOpen(false);
-  };
-
-  const handleClick = (e) => {
-    setOpen(false);
-  };
-
-  return (
-    <>
-      <NavButton
-        key={props.menuData[0]}
-        sx={{
-          fontSize:  width < breakpoint ? '0.5em' : '0.75em',
-          textTransform: 'uppercase',
-          fontFamily: 'Arial,sans-serif',
-          textDecoration: 'none',
-          textIndent: 0,
-          color: '#104070',
-          // paddingLeft: '8px',
-          paddingRight: width < breakpoint ? '0px' : '4px',
-          fontWeight: 'bold',
-          bgcolor: 'transparent',
-          "&.MuiButtonBase-root:hover": {
-            bgcolor: "transparent"
-          }
-        }}
-        style={{ zIndex: 1301 }}
-        id={props.menuData[0]+'button'}
-        aria-controls={open ? 'simple-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="contained"
-        disableElevation
-        disableRipple
-        // onClick={handleClick}
-        onMouseOver={handleOpen}
-        onMouseLeave={handleClose}
-        endIcon={<ArrowDropDownIcon />}
-      >
-        {props.menuData[0]}
-      </NavButton>
-
-      <Menu
-        id={'simple-menu'}
-        anchorEl={anchorEl}
-        open={open}
-        MenuListProps={{
-          'aria-labelledby': props.menuData[0]+'button',
-        }}
-      >
-      {props.menuData[1].map((b, i) => {
-        return(
-          <MenuItem key={b[0]} onMouseLeave={handleClose} onClick={handleClick}><a href={b[1]}>{b[0]}</a></MenuItem>
-        )
-      })}
-      </Menu>
-    </>
-  )
 }
 
 export default NavBar;
