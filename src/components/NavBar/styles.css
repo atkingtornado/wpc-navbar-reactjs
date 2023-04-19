@@ -1,3 +1,47 @@
+.header-icon {
+  width:100%;
+  height: 100%;
+}
+
+.header-doc-icon {
+  width:100%;
+  height: 100%;
+}
+
+.wpc-title {
+  font-family: Arial,sans-serif!important;
+  font-size: 2.0em!important;
+  letter-spacing: 0px!important;
+  word-spacing: -0.5px;
+  text-decoration: none;
+  font-weight: 550!important;
+  color: black;
+  text-transform: uppercase;
+  font-variant: small-caps;
+}
+
+.noaa-title {
+  font-family: Arial,sans-serif!important;
+  font-size: 0.7em!important;
+  letter-spacing: 3px!important;
+  text-decoration: none;
+  color: gray;
+  text-transform: uppercase;
+  font-variant: small-caps;
+}
+
+.center-button {
+  font-size:  0.7em!important;
+  font-variant: small-caps!important;
+  text-transform: uppercase!important;
+  font-family: Arial,sans-serif!important;
+  text-decoration: none!important;
+  color: gray!important;
+  letter-spacing: 2px!important;
+  padding: 0px!important;
+  margin: 0px 10px 0px 10px!important;
+  min-width: 0px!important;
+}
 
 /* Dropdown Button */
 .dropbtn {
@@ -22,14 +66,45 @@
   white-space: nowrap;
 }
 
-@media screen and (max-width: 750px) {
-  .dropbtn {
-    font-size: .45em;
-    padding-left: 4px;
-    padding-right: 6px;
+@media screen and (max-width: 850px) {
+  .header-icon {
+    width: 37.1px;
+    height: 42px;
+  }
+  .header-doc-icon {
+    width: 94.5px;
+    height: 42px;
+  }
+  .wpc-title {
+    font-size: 1.5em!important;
+  }
+  .noaa-title {
+    font-size: 0.5em!important;
+    letter-spacing: 1.8px!important;
+  }
+  .center-button {
+    font-size:  0.35em!important;
+    letter-spacing: 1px!important;
   }
 }
 
+@media screen and (max-width: 600px) {
+  .header-icon {
+    width: 21.2px;
+    height: 24px;
+  }
+  .header-doc-icon {
+    width: 54px;
+    height: 24px;
+  }
+  .wpc-title {
+    font-size: 0.7em!important;
+  }
+  .noaa-title {
+    font-size: 0.2em!important;
+    letter-spacing: 0.5px!important;
+  }
+}
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -78,4 +153,39 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     color:  #EC7A08;
+}
+
+.accordian-header {
+  color: #104070;
+  text-indent: 0;
+  text-decoration: none;
+  font-weight: bold!important;
+  font-family: Arial,sans-serif;
+  text-transform: uppercase;
+  cursor:   pointer;
+}
+
+.accordian-details {
+    border-top: 3px solid #EC7A08;
+  border-bottom: 3px solid #EC7A08;
+}
+
+.accordian-link-container {
+
+}
+
+.accordian-link-container a {
+  text-decoration:  none  ;
+  color: #003366;
+  display:  block;
+  font-size: 1em;
+  font-weight: bold;
+  font-family: Arial,sans-serif;
+/*  border-top: 1px dotted #bbbbbb;*/
+/*  border-bottom: 1px dotted #bbbbbb;*/
+  padding:5px;
+}
+
+.accordian-link-container a:hover {
+     color:  #EC7A08;
 }

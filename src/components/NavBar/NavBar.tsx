@@ -7,9 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider'
@@ -17,6 +22,8 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { createTheme,  ThemeProvider } from '@mui/material/styles';
 import { alpha, styled } from '@mui/material/styles';
@@ -149,7 +156,7 @@ export const NavBar = (NavBarProps) => {
  
 
   const { width } = useViewport();
-  const breakpoint = 750;
+  const breakpoint = 850;
 
   return (
     <AppBar 
@@ -171,42 +178,22 @@ export const NavBar = (NavBarProps) => {
           <Box
             display="flex" 
             alignContent="start"
-            // position="absolute"
-            // left="5px"
           >
-
-
-          <img 
-            src={headerNWS} 
-            style={{
-              width: width < breakpoint ? '26.5px' : '100%',
-              height: width < breakpoint ? '30px' : '100%'
-            }}
-          />
-          <img 
-            src={headerNOAA} 
-            style={{
-              width: width < breakpoint ? '26.5px' : '100%',
-              height: width < breakpoint ? '30px' : '100%'
-            }}
-          />
+            <img 
+              src={headerNWS} 
+              className={'header-icon'}
+            />
+            <img 
+              src={headerNOAA} 
+              className={'header-icon'}
+            />
           </Box>
          <Box display="flex" flexDirection="column" padding={0} marginLeft={2} >
            <Typography
             noWrap
             component="a"
             href="/"
-            sx={{
-              fontFamily: 'Arial,sans-serif',
-              fontSize: width < breakpoint ? '1.0em' : '2.0em',
-              letterSpacing: '0px',
-              wordSpacing: '-0.5px',
-              textDecoration: 'none',
-              fontWeight: '550',
-              color: 'black',
-              textTransform: 'uppercase',
-              fontVariant: 'small-caps',
-            }}
+            className='wpc-title'
           >
             Weather Prediction Center
           </Typography>
@@ -214,29 +201,16 @@ export const NavBar = (NavBarProps) => {
             noWrap
             component="a"
             href="/"
-            sx={{
-              fontVariant: 'small-caps',
-              textTransform: 'uppercase',
-              fontFamily: 'Arial,sans-serif',
-              fontSize:  width < breakpoint ? '0.35em' : '0.7em',
-              textDecoration: 'none',
-              color: 'gray',
-              letterSpacing: width < breakpoint ? '1.5px' : '3px',
-            }}
+            className='noaa-title'
           >
             National Oceanic and Atmospheric Administration
           </Typography>
         </Box>
         <Box
-          // position="absolute"
-          // right="5px"
         >
           <img 
             src={headerDOC} 
-            style={{
-              width: width < breakpoint ? '67.5px' : '100%',
-              height: width < breakpoint ? '30px' : '100%'
-            }}
+            className={'header-doc-icon'}
           />
         </Box>
       </Box>
@@ -246,18 +220,7 @@ export const NavBar = (NavBarProps) => {
           return (
             <Button
               key={a[0] + 'button'}
-              sx={{
-                fontSize:  width < breakpoint ? '0.35em' : '0.7em',
-                fontVariant: 'small-caps',
-                textTransform: 'uppercase',
-                fontFamily: 'Arial,sans-serif',
-                textDecoration: 'none',
-                color: 'gray',
-                letterSpacing: width < breakpoint ? '1px' : '2px',
-                padding: '0px',
-                margin: '0px 10px 0px 10px',
-                minWidth: '0px'
-              }}
+              className={'center-button'}
               href={a[1]}>
               {a[0]}
             </Button>
@@ -268,32 +231,103 @@ export const NavBar = (NavBarProps) => {
 
       </Box>
       <Divider />
-      <Box display="flex" flexDirection="row" padding={0} justifyContent="center">
-        {navLinks.map((a, i) => {
-          return (
-            <div className="dropdown">
-              <div className="dropbtn">{a[0]} ▼</div>
-              <div className="dropdown-content">
-                {
-                  a[1].map((b, j) => {
-
-                      return (
-                         <a href={b[1]}>{b[0]}</a>
-                      )
-                    })
-                }
-               
-              </div>
-            </div>
-          )
-        })
-
-        }
-
-      </Box>
-      <Divider />
+      {width < breakpoint ? <NavLinksDrawer/> : <NavLinks/>}
+      
+      
     </AppBar>
   );
 }
+
+
+const NavLinks = () => {
+
+  return (
+    <>
+      <Box display="flex" flexDirection="row" padding={0} justifyContent="center">
+          {navLinks.map((a, i) => {
+            return (
+              <div className="dropdown">
+                <div className="dropbtn">{a[0]} ▼</div>
+                <div className="dropdown-content">
+                  {
+                    a[1].map((b, j) => {
+
+                        return (
+                           <a href={b[1]}>{b[0]}</a>
+                        )
+                      })
+                  }
+                 
+                </div>
+              </div>
+            )
+          })
+
+          }
+
+        </Box>
+        <Divider />
+      </>
+  )
+}
+
+const NavLinksDrawer = () => {
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
+  return(
+    <>
+      <Drawer
+        anchor="top"
+        sx={{ width: 250, color: "#fff" }}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+      >
+        {navLinks.map((a, i) => {
+          return (
+            <Accordion expanded={expanded === a[0]} onChange={handleChange(a[0])} key={'accordian' + a[0]}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+              >
+                <Typography className="accordian-header">{a[0]}</Typography>
+              </AccordionSummary>
+              <AccordionDetails className="accordian-details">
+                {
+                  a[1].map((b, j) => {
+                    return (
+                      <div className="accordian-link-container">
+                        <a href={b[1]}>{b[0]}</a>
+                      </div>
+                    )
+                  })
+                }
+              </AccordionDetails>
+            </Accordion>
+          )
+        })}
+      </Drawer>
+      <Box 
+        display="flex" 
+        flexDirection="row" 
+        justifyContent="left"
+        alignContent="start"
+        height="34px"
+      >
+        <IconButton
+          onClick={() => setOpenDrawer(!openDrawer)}
+        >
+          <MenuIcon />
+        </IconButton>
+      </Box>
+      <Divider />
+    </>
+  )
+
+}
+
 
 export default NavBar;
