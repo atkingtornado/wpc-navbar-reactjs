@@ -83,7 +83,7 @@
     letter-spacing: 1.8px!important;
   }
   .center-button {
-    font-size:  0.35em!important;
+    font-size:  0.5em!important;
     letter-spacing: 1px!important;
   }
 }
@@ -98,11 +98,15 @@
     height: 24px;
   }
   .wpc-title {
-    font-size: 0.7em!important;
+    font-size: 0.8em!important;
   }
   .noaa-title {
     font-size: 0.2em!important;
     letter-spacing: 0.5px!important;
+  }
+  .center-button {
+    font-size:  0.2em!important;
+    letter-spacing: 1px!important;
   }
 }
 

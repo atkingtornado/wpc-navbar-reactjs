@@ -174,10 +174,12 @@ export const NavBar = (NavBarProps) => {
         flexDirection="row" 
         justifyContent="center"
         alignContent="start"
+        height="60px"
       >
           <Box
             display="flex" 
             alignContent="start"
+            alignItems="center"
           >
             <img 
               src={headerNWS} 
@@ -188,7 +190,7 @@ export const NavBar = (NavBarProps) => {
               className={'header-icon'}
             />
           </Box>
-         <Box display="flex" flexDirection="column" padding={0} marginLeft={2} >
+         <Box display="flex" flexDirection="column" padding={0} marginLeft={2} justifyContent="center">
            <Typography
             noWrap
             component="a"
@@ -207,6 +209,8 @@ export const NavBar = (NavBarProps) => {
           </Typography>
         </Box>
         <Box
+          display="flex"
+          alignItems="center"
         >
           <img 
             src={headerDOC} 
@@ -215,7 +219,13 @@ export const NavBar = (NavBarProps) => {
         </Box>
       </Box>
       <Divider />
-      <Box display="flex" flexDirection="row" padding={0} justifyContent="center">
+      <Box 
+        display="flex" 
+        flexDirection="row" 
+        padding={0} 
+        justifyContent="center"
+        height="20px"
+      >
         {centerLinks.map((a, i) => {
           return (
             <Button
@@ -243,7 +253,7 @@ const NavLinks = () => {
 
   return (
     <>
-      <Box display="flex" flexDirection="row" padding={0} justifyContent="center">
+      <Box display="flex" flexDirection="row" padding={0} justifyContent="center" height="30px">
           {navLinks.map((a, i) => {
             return (
               <div className="dropdown">
@@ -315,7 +325,7 @@ const NavLinksDrawer = () => {
         flexDirection="row" 
         justifyContent="left"
         alignContent="start"
-        height="34px"
+        height="30px"
       >
         <IconButton
           onClick={() => setOpenDrawer(!openDrawer)}
