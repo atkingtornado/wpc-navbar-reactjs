@@ -256,14 +256,14 @@ const NavLinks = () => {
       <Box display="flex" flexDirection="row" padding={0} justifyContent="center" height="30px">
           {navLinks.map((a, i) => {
             return (
-              <div className="dropdown">
+              <div key={a[0]} className="dropdown">
                 <div className="dropbtn">{a[0]} ▼</div>
                 <div className="dropdown-content">
                   {
                     a[1].map((b, j) => {
 
                         return (
-                           <a href={b[1]}>{b[0]}</a>
+                           <a key={b[0]} href={b[1]}>{b[0]}</a>
                         )
                       })
                   }
