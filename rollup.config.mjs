@@ -3,11 +3,12 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import image from '@rollup/plugin-image';
-import autoprefixer from 'autoprefixer';
+// import autoprefixer from 'autoprefixer';
 import postcss from "rollup-plugin-postcss";
+import { readFileSync } from 'fs';
 
 // const packageJson = require("./package.json");
-import packageJson from "./package.json" assert { type: "json" };
+const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
 
 export default [
   {

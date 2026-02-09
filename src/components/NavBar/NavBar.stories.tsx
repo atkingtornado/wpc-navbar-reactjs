@@ -1,25 +1,32 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react"
 
-import NavBar from './NavBar';
+import NavBar from "./NavBar"
 
-export default {
-  title: 'Example/NavBar',
+const meta: Meta<typeof NavBar> = {
+  title: "Example/NavBar",
   component: NavBar,
   parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-} as ComponentMeta<typeof NavBar>;
+}
 
-const Template: ComponentStory<typeof NavBar> = (args) => <NavBar {...args} />;
+export default meta
+type Story = StoryObj<typeof meta>
 
-// export const LoggedIn = Template.bind({});
-// LoggedIn.args = {
-//   user: {
-//     name: 'Jane Doe',
-//   },
-// };
+export const Light: Story = {
+  args: {
+    theme: "light",
+  },
+}
 
-export const test = Template.bind({});
-test.args = {};
+export const Dark: Story = {
+  args: {
+    theme: "dark",
+  },
+}
+
+export const test: Story = {
+  args: {
+    theme: "light",
+  },
+}
